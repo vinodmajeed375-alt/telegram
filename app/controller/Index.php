@@ -23,7 +23,6 @@ class Index extends BaseController
         echo "<hr/>";
         $apikey = config('cms.api_key_q');
         $url = 'https://api.telegram.org/bot'.$apikey.'/getWebhookInfo';
-        $client = new Client();
         $response = $client->request('POST', $url, [
             'verify' => false,
         ]);

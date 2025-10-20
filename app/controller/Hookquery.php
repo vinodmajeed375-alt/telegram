@@ -22,6 +22,7 @@ class Hookquery extends BaseController
     }
     public function telegramSet(){
         try {
+            Log::write($this->config['webhook']['urlquery'],'Hook_query  telegramSet');
             $telegram = new Telegram($this->config['api_key_q'], $this->config['bot_username_q']);
             $result = $telegram->setWebhook($this->config['webhook']['urlquery']);
             if ($result->isOk()) {

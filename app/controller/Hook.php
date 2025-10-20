@@ -30,6 +30,7 @@ class Hook extends BaseController
     }
     public function telegramSet(){
         try {
+            Log::write($this->config['webhook']['url'],'Hook telegramSet');
             // Create Telegram API object
             $telegram = new Telegram($this->config['api_key'], $this->config['bot_username']);
             // Set webhook
@@ -46,7 +47,7 @@ class Hook extends BaseController
     }
 
     public function telegramUnset(){
-
+        Log::write($this->config['api_key'],'Hook telegramUnset');
         try {
             // Create Telegram API object
             $telegram = new Telegram($this->config['api_key'], $this->config['bot_username']);
