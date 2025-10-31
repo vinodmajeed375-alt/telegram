@@ -22,7 +22,9 @@ class Hook extends BaseController
             $arr = json_decode($updates,true);
             Log::write(json_encode($arr,JSON_UNESCAPED_UNICODE),'Hook');
             $ojb =  new Tg($this->app);
-            $ojb->index($telegram,$arr);
+            if(is_array($arr) && $arr){
+                $ojb->index($telegram,$arr);
+            }
         } catch (Longman\TelegramBot\Exception\TelegramException $e) {
             // Silence is golden!
             Log::write($e->getMessage(),'Hook-index-error');

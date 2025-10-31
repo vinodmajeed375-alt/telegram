@@ -57,13 +57,16 @@ class Tg extends BaseController
               $arr = $chat_arr['message'];
           }elseif(isset($chat_arr['my_chat_member'])){
               $arr = $chat_arr['my_chat_member'];
+          }else{
+              Log::write($chat_arr,'tg index no message');
+              exit();
           }
           $channl = Api::getChannl($arr['chat']);
             if(empty($channl['uid'])){
                 Log::write($channl,'channl');
                 return ;
             }
-          if(!empty($arr['photo'])){
+          if(!empty($arr['photo']) && $channl['pchatid'];){
               $arr['userid'] = $channl['uid'];
               $arr['pchatid'] = $channl['pchatid'];
               $telegram->setCommandConfig('photo',$arr);
