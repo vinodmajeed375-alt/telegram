@@ -48,9 +48,8 @@ class Tg extends BaseController
         }
     }
 
-    public function index(&$telegram="",$chat=""){
-          $chat_arr = json_decode($chat,true);
-          Log::write($chat,'tg index');
+    public function index(&$telegram="",$chat_arr=[]){
+          Log::write(json_encode($chat_arr,JSON_UNESCAPED_UNICODE),'tg index');
           $arr = [];
           if(isset($chat_arr['edited_message'])){
               $arr = $chat_arr['edited_message'];
