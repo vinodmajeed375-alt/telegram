@@ -19,13 +19,13 @@ class Hook extends BaseController
             $telegram->addCommandsPaths($this->config['commands']['paths']);
             // Add commands paths containing your custom commands
             $updates = file_get_contents('php://input');
-            Log::write($updates,'Hook');
+            $arr = json_decode($updates);
+            Log::write(json_encode($arr,JSON_UNESCAPED_UNICODE),'Hook');
             $ojb =  new Tg($this->app);
             $ojb->index($telegram,$updates);
         } catch (Longman\TelegramBot\Exception\TelegramException $e) {
             // Silence is golden!
             Log::write($e->getMessage(),'Hook-index-error');
-            $e->getMessage();
         }
     }
     public function telegramSet(){
