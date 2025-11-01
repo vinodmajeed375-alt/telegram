@@ -66,7 +66,7 @@ class Tg extends BaseController
                 Log::write($channl,'channl');
                 return ;
             }
-          if((!empty($arr['photo']))&& !empty($channl['pchatid'])){
+          if(isset($arr['photo'][0])){
               $arr['userid'] = $channl['uid'];
               $arr['pchatid'] = $channl['pchatid'];
               $telegram->setCommandConfig('photo',$arr);

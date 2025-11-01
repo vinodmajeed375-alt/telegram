@@ -48,7 +48,7 @@ class PhotoCommand  extends UserCommand
         $chat_id = $message->getChat()->getId();   // Get the current Chat ID
         $param = $this->getConfig();
        // $param["orderid"]= $this->getConfig('orderid');
-        Log::write($message,'photo execute message');
+        Log::write(json_encode($message,JSON_UNESCAPED_UNICODE),'photo execute message');
         $msg =  "已经收到查单反馈，请耐心等候结果";
         $data = [                                  // Set up the new message data
             'chat_id' => $chat_id,                 // Set Chat ID to send the message to
@@ -56,7 +56,7 @@ class PhotoCommand  extends UserCommand
             'reply_to_message_id'=>$param['message_id']
         ];
         //$this->parentMessage($param);
-        Log::write($data,'photo execute redata');
+        Log::write(json_encode($data,JSON_UNESCAPED_UNICODE),'photo execute sendMessage');
         return Request::sendMessage($data); // 回复查单消息
     }
 
