@@ -55,9 +55,10 @@ class PhotoCommand  extends UserCommand
             'text'    => $msg,
             'reply_to_message_id'=>$param['message_id']
         ];
-        //$this->parentMessage($param);
         Log::write(json_encode($data,JSON_UNESCAPED_UNICODE),'photo execute sendMessage');
-        return Request::sendMessage($data); // 回复查单消息
+         Request::sendMessage($data); // 回复查单消息
+       return $this->parentMessage($param);
+       // return Request::sendMessage($data); // 回复查单消息
     }
 
     public function parentMessage($param){
@@ -73,9 +74,11 @@ class PhotoCommand  extends UserCommand
                 $tginfo =  Api::getPayChannl($orderinfo['channel_id']);
                 Log::write($tginfo,'photo pay_channel');
                 $pchatid = $tginfo['zfb_pid'];
+            }else{
+                $msg = $param['caption'];
             }
         }
-        Request::sendPhoto([
+      return  Request::sendPhoto([
             'chat_id' =>  $pchatid, //父类群主ID
             'photo' => $file_id, //直接用file_id
             'caption' => $msg,
