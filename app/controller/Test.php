@@ -7,6 +7,13 @@ namespace app\controller;
 class Test
 {
 
+    public function ss(){
+        $str = '{"update_id":405717040,"message":{"message_id":5864,"from":{"id":5780143881,"is_bot":false,"first_name":"mina（任何资金问题全部电话确认）","username":"luluyuan1212"},"chat":{"id":-4858717700,"title":"10258\/印度一类","type":"group","all_members_are_administrators":true,"accepted_gift_types":{"unlimited_gifts":false,"limited_gifts":false,"unique_gifts":false,"premium_subscription":false}},"date":1761988001,"photo":[{"file_id":"AgACAgQAAxkBAAIW6GkFzaGiUhHXloi2Y1jYNuWRaC1JAAK7C2sbIwwwUCpdLIbbFVX2AQADAgADcwADNgQ","file_unique_id":"AQADuwtrGyMMMFB4","file_size":832,"width":42,"height":90},{"file_id":"AgACAgQAAxkBAAIW6GkFzaGiUhHXloi2Y1jYNuWRaC1JAAK7C2sbIwwwUCpdLIbbFVX2AQADAgADbQADNgQ","file_unique_id":"AQADuwtrGyMMMFBy","file_size":11355,"width":148,"height":320},{"file_id":"AgACAgQAAxkBAAIW6GkFzaGiUhHXloi2Y1jYNuWRaC1JAAK7C2sbIwwwUCpdLIbbFVX2AQADAgADeAADNgQ","file_unique_id":"AQADuwtrGyMMMFB9","file_size":38125,"width":369,"height":800},{"file_id":"AgACAgQAAxkBAAIW6GkFzaGiUhHXloi2Y1jYNuWRaC1JAAK7C2sbIwwwUCpdLIbbFVX2AQADAgADeQADNgQ","file_unique_id":"AQADuwtrGyMMMFB-","file_size":61644,"width":590,"height":1280}],"caption":"ust2025110116323119870"}}';
+       $arr =  json_decode($str,true)['message'];
+       var_dump($arr['photo']);
+        var_dump($arr['chat']);
+        exit;
+    }
     function setWebhook($url, $certificate) {
         // 这里应该是你的 API 请求代码
         // 例如，使用 cURL 发送 POST 请求
