@@ -14,9 +14,8 @@ class Telegramhash extends BaseController
             'api_id' => 21952672,
             'api_hash' => '013d3f03edf22c8800b8b47937458ef1',
         ]);
-        $session_file = 'session.madeline';
+        $session_file = runtime_path(). 'session.madeline';
         $MadelineProto = new API($session_file, $settings);
-        var_dump($MadelineProto);
 
         try {
             $MadelineProto->start(); // 首次运行会提示验证
