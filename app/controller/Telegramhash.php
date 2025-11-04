@@ -24,19 +24,22 @@ class Telegramhash extends BaseController
         }
 
         $peer_id = -4919097926; // 目标群组或频道ID
-        $media = 'AgACAgUAAxkBAAIXKGkIZCJvkTW1daOPqWge_BnQqQUVAALfC2sbH5BAVNv6BbNlE-o5AQADAgADcwADNgQ'; // 你的图片媒体ID
+        $media = 'AgACAgUAAxkBAAIXKGkIZCJvkTW1daOPqWge_BnQqQUVAALfC2sbH5BAVNv6BbNlE-o5AQADAgADcwADNgQ'; // 媒体ID
         $caption = '图片说明';
 
-        // 先确保目标已导入（获取聊天信息）
+        // 先确保目标聊天已加载（用 getChats()）
         try {
-            // 获取群组信息，确保它在数据库中
-            $fullChat = $MadelineProto->getFullChat($peer_id);
+            // 获取目标聊天信息，确保它存在
+            $chats = $MadelineProto->getChats([$peer_id]);
+            if (!isset($chats[$peer_id])) {
+                throw new \Exception("目标聊天不存在或未导入");
+            }
         } catch (Exception $e) {
-            echo '获取对等方信息失败：', $e->getMessage(), "\n";
+            echo '获取聊天信息失败：', $e->getMessage(), "\n";
             exit;
         }
 
-        // 发送图片媒体消息
+        // 发送媒体消息
         try {
             $MadelineProto->messages->sendMedia([
                 'peer' => $peer_id,
