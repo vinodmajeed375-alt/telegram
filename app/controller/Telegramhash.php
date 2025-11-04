@@ -2,6 +2,7 @@
 namespace app\controller;
 use app\BaseController;
 use danog\MadelineProto\API;
+use danog\MadelineProto\Exception;
 use danog\MadelineProto\Settings;
 
 class Telegramhash extends BaseController
@@ -15,9 +16,12 @@ class Telegramhash extends BaseController
         ]);
         $session_file = 'session.madeline';
         $MadelineProto = new API($session_file, $settings);
+        var_dump($MadelineProto);
+
         try {
             $MadelineProto->start(); // 首次运行会提示验证
-        } catch (\danog\MadelineProto\Exception $e) {
+
+        } catch (Exception $e) {
             echo 'Error: ', $e->getMessage();
             exit;
         }
