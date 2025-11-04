@@ -32,8 +32,8 @@ class Telegramhash extends BaseController
         $caption = '这是图片的说明';
 
         try {
-            $chats = $MadelineProto->getChats([$peer_id]);
-            if (!isset($chats[$peer_id])) {
+            $chats = $MadelineProto->getChat($peer_id);
+            if (!isset($chats)) {
                 throw new \Exception("目标聊天未导入");
             }
         } catch (\Exception $e) {
