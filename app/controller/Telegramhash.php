@@ -26,7 +26,7 @@ class Telegramhash extends BaseController
 
 
 
-        $peer_id = -4919097926; // 目标群组或频道ID
+        $peer_id = -4663428801; // 目标群组或频道ID
 
         $media = 'https://cdn.pixabay.com/photo/2025/10/17/15/16/halloween-9900545_1280.jpg'; // 图片文件路径或URL，也可以是媒体ID
         $caption = '这是图片的说明';
@@ -38,7 +38,6 @@ class Telegramhash extends BaseController
             }
         } catch (\Exception $e) {
             echo '导入聊天失败：', $e->getMessage(), "\n";
-            exit;
         }
 
         try {
