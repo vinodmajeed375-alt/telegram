@@ -30,7 +30,7 @@ class Telegramhash extends BaseController
         // 先确保目标聊天已加载（用 getChats()）
         try {
             // 获取目标聊天信息，确保它存在
-            $chats = $MadelineProto->getChat([$peer_id]);
+            $chats = $MadelineProto->getChat($peer_id);
            // $chats = $MadelineProto->getChats([$peer_id]);
             if (!isset($chats[$peer_id])) {
                 throw new \Exception("目标聊天不存在或未导入");
