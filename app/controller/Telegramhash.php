@@ -32,16 +32,16 @@ class Telegramhash extends BaseController
         $file_id = 'AgACAgUAAxkBAAIXfWkJsVzDBfSjgZKoUFF5ra2WFaRGAAICDGsbJkhJVImkTYpUa_RCAQADAgADeAADNgQ';
 
 
-        $upload = $MadelineProto->upload([
-            'file' => public_path() . '/luotuo-001.jpg',
-            //'file' => 'https://img.ivsky.com/img/tupian/t/202108/25/luotuo-001.jpg',
-        ]);
-
-        // 获取正式的file_id
-        $file_info = $MadelineProto->getFile($upload['file_id']);
-        $file_id = $file_info['file_id'];
-
-        var_dump($file_id);
+//        $upload = $MadelineProto->upload([
+//            'file' => public_path() . '/luotuo-001.jpg',
+//            //'file' => 'https://img.ivsky.com/img/tupian/t/202108/25/luotuo-001.jpg',
+//        ]);
+//
+//        // 获取正式的file_id
+//        $file_info = $MadelineProto->getFile($upload['file_id']);
+//        $file_id = $file_info['file_id'];
+//
+//        var_dump($file_id);
 
 
         $caption = 'xx这是图片的说';
