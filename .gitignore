@@ -4,4 +4,6 @@
 /.vscode
 /vendor
 /public/*.log
+/public/session.madeline
+/public/session
 /runtime
