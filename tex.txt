@@ -5,19 +5,18 @@ https://github.com/php-telegram-bot/core
 
 
 URL: https://abcds1234.com
+Qwer1234
 
-
-App configuration
 App api_id:
-21952672
+24397383
 
 App api_hash:
-013d3f03edf22c8800b8b47937458ef1
+00b548fa7f78dde0fbf2e5ca318d4303
 
 App title:
-telegramuery
+abcdsbot
 Short name:
-abcd123456
+abcds1234
 alphanumeric, 5-32 characters
 FCM credentials  Update (https://my.telegram.org/apps/fcm_service_account)  
 Available MTProto servers
