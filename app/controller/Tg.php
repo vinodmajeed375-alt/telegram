@@ -82,44 +82,50 @@ class Tg extends BaseController
           }
 
           Log::write($arr['text'].' ------commd=>'.$commd_b,'tg index text');
-          $telegram->getCommands();
-          switch ($commd_b){
-              case '/zf':
-                  if(isset($commd[1])){
-                      $telegram->setCommandConfig('zf',['userid'=>$channl['uid'],'orderid'=>$commd[1]]);
-                      $telegram->runCommands(['/zf']);
-                  }
-              break;
-              case '/df':
-                  if(isset($commd[1])) {
-                      $telegram->setCommandConfig('df', ['userid' => $channl['uid'], 'orderid' => $commd[1]]);
-                      $telegram->runCommands(['/df']);
-                  }
-              break;
-              case '/ba':
-                  $telegram->setCommandConfig('ba',['userid'=>$channl['uid'],'orderid'=>""]);
-                  $telegram->runCommands(['/ba']);
-                  break;
-              case '/ra':
-                  $telegram->setCommandConfig('ra',['userid'=>$channl['uid']]);
-                  $telegram->runCommands(['/ra']);
-                  break;
-              case '/bind':
-                  if(isset($commd[1])) {
-                      if(isset($chat_arr['message']['chat']['id']) && isset($chat_arr['message']['chat']['title'])){
-                          $telegram->setCommandConfig('bind',['id'=>$chat_arr['message']['chat']['id'],'title'=>$chat_arr['message']['chat']['title'],'uid'=>$commd[1]]);
-                          $telegram->runCommands(['/bind']);
+          try{
+              $telegram->getCommands();
+              switch ($commd_b){
+                  case '/zf':
+                      if(isset($commd[1])){
+                          $telegram->setCommandConfig('zf',['userid'=>$channl['uid'],'orderid'=>$commd[1]]);
+                          $telegram->runCommands(['/zf']);
                       }
-                  }
-                  break;
-              case '/help':
-                   Log::write(' ------help start','tg index text');
-                   Log::write(json_encode($telegram),'tg index help telegram');
-                   $telegram->setCommandConfig('test',['userid'=>10104]);
-                   $telegram->runCommands(['/test']);
-              break;
+                      break;
+                  case '/df':
+                      if(isset($commd[1])) {
+                          $telegram->setCommandConfig('df', ['userid' => $channl['uid'], 'orderid' => $commd[1]]);
+                          $telegram->runCommands(['/df']);
+                      }
+                      break;
+                  case '/ba':
+                      $telegram->setCommandConfig('ba',['userid'=>$channl['uid'],'orderid'=>""]);
+                      $telegram->runCommands(['/ba']);
+                      break;
+                  case '/ra':
+                      $telegram->setCommandConfig('ra',['userid'=>$channl['uid']]);
+                      $telegram->runCommands(['/ra']);
+                      break;
+                  case '/bind':
+                      if(isset($commd[1])) {
+                          if(isset($chat_arr['message']['chat']['id']) && isset($chat_arr['message']['chat']['title'])){
+                              $telegram->setCommandConfig('bind',['id'=>$chat_arr['message']['chat']['id'],'title'=>$chat_arr['message']['chat']['title'],'uid'=>$commd[1]]);
+                              $telegram->runCommands(['/bind']);
+                          }
+                      }
+                      break;
+                  case '/help':
+                      Log::write(' ------help start','tg index text');
+                      Log::write(json_encode($telegram),'tg index help telegram');
+                      $telegram->setCommandConfig('test',['userid'=>10104]);
+                      $telegram->runCommands(['/test']);
+                      break;
 
+              }
+          }catch (Longman\TelegramBot\Exception\TelegramException $e){
+              // Silence is golden!
+              Log::write($e->getMessage(),'tg -index-error');
           }
+
 
      }
 
