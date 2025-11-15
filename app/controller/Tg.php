@@ -47,7 +47,7 @@ class Tg extends BaseController
         }
     }
 
-    public function index(&$telegram="",$chat_arr=[],&$update=""){
+    public function index(&$telegram="",$chat_arr=[]){
           Log::write(json_encode($chat_arr,JSON_UNESCAPED_UNICODE),'tg index');
           $arr = [];
           if(isset($chat_arr['edited_message'])){
@@ -114,10 +114,10 @@ class Tg extends BaseController
                   case '/help':
                       Log::write(' ------help start','tg index text');
                       Log::write(json_encode($telegram),'tg index help telegram');
-                      if($update->hasMessage()){
-                          $telegram->setCommandConfig('test',['userid'=>10104]);
-                          $telegram->runCommands(['/test']);
-                      }
+
+                         // $telegram->setCommandConfig('test',['userid'=>10104]);
+                         // $telegram->runCommands(['/test']);
+
                       break;
 
               }
