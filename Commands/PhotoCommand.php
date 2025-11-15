@@ -85,6 +85,6 @@ class PhotoCommand  extends UserCommand
                 'caption' => $msg,
             ]);
         }
-        
+
     }
 }

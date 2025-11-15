@@ -61,7 +61,8 @@ class Tg extends BaseController
               Log::write($chat_arr,'tg index no message');
               exit();
           }
-          $channl = Api::getChannl($arr['chat']);
+           $channl = Api::getChannl($arr['chat']);
+           Log::write($channl,'tg index channl');
             if(empty($channl['uid'])){
                 Log::write($channl,'channl');
                 return ;
@@ -79,6 +80,8 @@ class Tg extends BaseController
               $commd = preg_split('/\s+/',$arr['text']);
               $commd_b = trim($commd[0]);
           }
+
+          Log::write($arr['text'].'commd_b=>'.$commd_b,'tg index text');
           switch ($commd_b){
               case '/zf':
                   if(isset($commd[1])){
@@ -112,6 +115,7 @@ class Tg extends BaseController
                    $telegram->setCommandConfig('test',[]);
                    $telegram->runCommands(['/test']);
               break;
+
           }
 
      }
