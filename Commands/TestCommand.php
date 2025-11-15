@@ -16,7 +16,7 @@ class TestCommand extends UserCommand
     {
         Log::write("Test start",'TestCommand');
         $message = $this->getMessage();            // Get Message object
-        if($message && $message->getChat()){
+        if($message && $message->getFrom()){
             $chat_id = $message->getChat()->getId();
             Log::write($message,'TestCommand');
             Log::write($chat_id,'TestCommand chat_id');
