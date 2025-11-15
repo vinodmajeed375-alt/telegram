@@ -23,6 +23,8 @@ class TestCommand extends UserCommand
             'chat_id' => $chat_id,                 // Set Chat ID to send the message to
             'text'    => $msg, // Set message to send
         ];
-        return Request::sendMessage($data);        // Send message!
+        if($chat_id){
+            return Request::sendMessage($data);        // Send message!
+        }
     }
 }
