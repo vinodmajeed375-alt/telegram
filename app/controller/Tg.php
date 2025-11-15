@@ -6,7 +6,6 @@ use think\App;
 use think\facade\Db;
 use think\facade\Log;
 use Longman\TelegramBot\Request;
-
 class Tg extends BaseController
 {
     public function __construct(App $app)
@@ -48,7 +47,7 @@ class Tg extends BaseController
         }
     }
 
-    public function index(&$telegram="",$chat_arr=[]){
+    public function index(&$telegram="",$chat_arr=[],$update){
           Log::write(json_encode($chat_arr,JSON_UNESCAPED_UNICODE),'tg index');
           $arr = [];
           if(isset($chat_arr['edited_message'])){
@@ -115,8 +114,10 @@ class Tg extends BaseController
                   case '/help':
                       Log::write(' ------help start','tg index text');
                       Log::write(json_encode($telegram),'tg index help telegram');
-                      $telegram->setCommandConfig('test',['userid'=>10104]);
-                      $telegram->runCommands(['/test']);
+                      if($update->hasMessage()){
+                          $telegram->setCommandConfig('test',['userid'=>10104]);
+                          $telegram->runCommands(['/test']);
+                      }
                       break;
 
               }
