@@ -79,9 +79,7 @@ class Tg extends BaseController
               $commd = preg_split('/\s+/',$arr['text']);
               $commd_b = trim($commd[0]);
           }
-
           Log::write($arr['text'].' ------commd=>'.$commd_b,'tg index text');
-          try{
               switch ($commd_b){
                   case '/zf':
                       if(isset($commd[1])){
@@ -113,20 +111,14 @@ class Tg extends BaseController
                       break;
                   case '/help':
                       Log::write(' ------help start','tg index text');
-                      Log::write(json_encode($telegram),'tg index help telegram');
-
-                         // $telegram->setCommandConfig('test',['userid'=>10104]);
-                         // $telegram->runCommands(['/test']);
-
+                      try {
+                          $telegram->setCommandConfig('test',['userid'=>10104]);
+                          $telegram->runCommands(['/test']);
+                      } catch (\Longman\TelegramBot\Exception\TelegramException $e) {
+                          Log::error('运行命令时出错：' . $e->getMessage());
+                      }
                       break;
-
               }
-          }catch (Longman\TelegramBot\Exception\TelegramException $e){
-              // Silence is golden!
-              Log::write($e->getMessage(),'tg -index-error');
-          }
-
-
      }
 
 
