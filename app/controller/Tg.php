@@ -112,13 +112,14 @@ class Tg extends BaseController
                   }
                   break;
               case '/help':
-                   $telegram->setCommandConfig('test',[]);
+                   $telegram->setCommandConfig('test',['userid'=>10104]);
                    $telegram->runCommands(['/test']);
               break;
 
           }
 
      }
+
 
 
 }
