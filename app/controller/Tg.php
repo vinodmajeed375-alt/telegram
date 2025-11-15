@@ -112,6 +112,7 @@ class Tg extends BaseController
                   }
                   break;
               case '/help':
+                   Log::write(' ------help start','tg index text');
                    $telegram->setCommandConfig('test',['userid'=>10104]);
                    $telegram->runCommands(['/test']);
               break;
