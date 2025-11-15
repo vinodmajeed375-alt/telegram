@@ -78,10 +78,13 @@ class PhotoCommand  extends UserCommand
                 $msg = $param['caption'];
             }
         }
-      return  Request::sendPhoto([
-            'chat_id' =>  $pchatid, //父类群主ID
-            'photo' => $file_id, //直接用file_id
-            'caption' => $msg,
-        ]);
+        if($pchatid && $file_id){
+            return  Request::sendPhoto([
+                'chat_id' =>  $pchatid, //父类群主ID
+                'photo' => $file_id, //直接用file_id
+                'caption' => $msg,
+            ]);
+        }
+        
     }
 }
