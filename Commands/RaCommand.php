@@ -5,7 +5,7 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 use Longman\TelegramBot\Request;
-
+use think\facade\Log;
 
 
 class RaCommand extends UserCommand
@@ -53,6 +53,7 @@ class RaCommand extends UserCommand
             'chat_id' => $chat_id,                 // Set Chat ID to send the message to
             'text'    => $msg, // Set message to send
         ];
+        Log::write(json_encode($data,JSON_UNESCAPED_UNICODE),'Ra execute sendMessage');
         return Request::sendMessage($data);        // Send message!
     }
 }
