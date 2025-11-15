@@ -83,7 +83,6 @@ class Tg extends BaseController
 
           Log::write($arr['text'].' ------commd=>'.$commd_b,'tg index text');
           try{
-              $telegram->getCommands();
               switch ($commd_b){
                   case '/zf':
                       if(isset($commd[1])){
