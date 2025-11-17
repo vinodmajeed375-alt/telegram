@@ -58,7 +58,6 @@ class PhotoCommand  extends UserCommand
         Log::write(json_encode($data,JSON_UNESCAPED_UNICODE),'photo execute sendMessage');
          Request::sendMessage($data); // 回复查单消息
        return $this->parentMessage($param);
-       // return Request::sendMessage($data); // 回复查单消息
     }
 
     public function parentMessage($param){
@@ -78,13 +77,11 @@ class PhotoCommand  extends UserCommand
                 $msg = $param['caption'];
             }
         }
-        if($pchatid && $file_id){
-            return  Request::sendPhoto([
-                'chat_id' =>  $pchatid, //父类群主ID
-                'photo' => $file_id, //直接用file_id
-                'caption' => $msg,
-            ]);
-        }
+        return  Request::sendPhoto([
+            'chat_id' =>  $pchatid, //父类群主ID
+            'photo' => $file_id, //直接用file_id
+            'caption' => $msg,
+        ]);
 
     }
 }
