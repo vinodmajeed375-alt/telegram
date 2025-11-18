@@ -49,16 +49,21 @@ class Hook extends BaseController
     }
 
     public function telegramUnset(){
+
         Log::write($this->config['api_key'],'Hook telegramUnset');
-        try {
-            // Create Telegram API object
-            $telegram = new Telegram($this->config['api_key'], $this->config['bot_username']);
-            // Unset / delete the webhook
-            $result = $telegram->deleteWebhook();
-            echo $result->getDescription();
-        } catch (TelegramException $e) {
-            Log::write($e->getMessage(),'hook Unset');
-            $e->getMessage();
+        if($this->request->param('a')){
+            try {
+                // Create Telegram API object
+                $telegram = new Telegram($this->config['api_key'], $this->config['bot_username']);
+                // Unset / delete the webhook
+                $result = $telegram->deleteWebhook();
+                echo $result->getDescription();
+            } catch (TelegramException $e) {
+                Log::write($e->getMessage(),'hook Unset');
+                $e->getMessage();
+            }
+        }else{
+            echo 'param error';
         }
     }
 
