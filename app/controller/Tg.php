@@ -79,7 +79,7 @@ class Tg extends BaseController
               $commd = preg_split('/\s+/',$arr['text']);
               $commd_b = trim($commd[0]);
           }
-          Log::write($arr['text'].' ------commd=>'.$commd_b,'tg index text');
+          Log::write(' ------commd=>'.$commd_b,'tg index text');
               switch ($commd_b){
                   case '/zf':
                       if(isset($commd[1])){
